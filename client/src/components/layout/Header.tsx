@@ -1,4 +1,4 @@
-import { Icon, Stack, Typography } from "@mui/material";
+import { Stack } from "@mui/material";
 import { FC } from "react";
 
 const Header: FC = () => (
