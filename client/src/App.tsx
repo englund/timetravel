@@ -1,11 +1,10 @@
-import Button from "@mui/material/Button/Button";
-
 import Layout from "./components/layout/Layout";
+import Timeline from "./components/timeline/Timeline";
 
 function App() {
   return (
     <Layout>
-      <Button variant="contained">Hello World</Button>
+      <Timeline />
     </Layout>
   );
 }

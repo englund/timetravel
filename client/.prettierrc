@@ -1,5 +1,5 @@
 {
-  "importOrder": ["^@fontsource/(.*)$", "^[./]"],
+  "importOrder": ["react", "^@mui/(.*)$", "^@fontsource/(.*)$", "^[./]"],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true
 }
