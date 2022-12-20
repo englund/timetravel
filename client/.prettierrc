@@ -2,7 +2,7 @@
   "importOrder": [
     "react",
     "^@mui/(.*)$",
-    "date-fns/(.*)$",
+    "^date-fns/?(.*)$",
     "^@fontsource/(.*)$",
     "^@/(.*)$",
     "^[./]"
