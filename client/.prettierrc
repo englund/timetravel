@@ -4,6 +4,7 @@
     "^@mui/(.*)$",
     "date-fns/(.*)$",
     "^@fontsource/(.*)$",
+    "^@/(.*)$",
     "^[./]"
   ],
   "importOrderSeparation": true,
