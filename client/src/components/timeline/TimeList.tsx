@@ -2,6 +2,7 @@ import { FC } from "react";
 
 import { Typography } from "@mui/material";
 
+import { format } from "../../utils/date";
 import { Time } from "./useTimeline";
 
 interface Props {
@@ -13,7 +14,7 @@ const TimeList: FC<Props> = ({ times }) => {
     <>
       {times.map((time, index) => (
         <Typography key={index}>
-          {time.date.toLocaleString()}: {time.hours}
+          {format(time.date, "P")}: {time.hours}
         </Typography>
       ))}
     </>
