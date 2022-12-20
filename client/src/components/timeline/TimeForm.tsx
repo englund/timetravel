@@ -7,7 +7,7 @@ interface Props {
   addTime: (hours: number, date: Date) => void;
 }
 
-const TimeInput: FC<Props> = ({ addTime }) => {
+const TimeForm: FC<Props> = ({ addTime }) => {
   const [hours, setHours] = useState(8);
   return (
     <>
@@ -21,4 +21,4 @@ const TimeInput: FC<Props> = ({ addTime }) => {
   );
 };
 
-export default TimeInput;
+export default TimeForm;

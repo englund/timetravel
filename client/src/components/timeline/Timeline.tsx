@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import TimeInput from "./TimeInput";
+import TimeForm from "./TimeForm";
 import TimeList from "./TimeList";
 import { useTimeline } from "./useTimeline";
 
@@ -9,7 +9,7 @@ const Timeline: FC = () => {
 
   return (
     <>
-      <TimeInput addTime={addTime} />
+      <TimeForm addTime={addTime} />
       <TimeList times={timeline} />
     </>
   );
