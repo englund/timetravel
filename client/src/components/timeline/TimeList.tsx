@@ -2,7 +2,8 @@ import { FC } from "react";
 
 import { Typography } from "@mui/material";
 
-import { format } from "../../utils/date";
+import { format } from "@/utils/date";
+
 import { Time } from "./useTimeline";
 
 interface Props {
