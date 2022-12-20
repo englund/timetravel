@@ -1,5 +1,6 @@
-import { Stack } from "@mui/material";
 import { FC } from "react";
+
+import { Stack } from "@mui/material";
 
 const Header: FC = () => (
   <Stack height={60} justifyContent="center">

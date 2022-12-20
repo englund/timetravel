@@ -1,5 +1,6 @@
-import { Container, Stack } from "@mui/material";
 import { FC, PropsWithChildren } from "react";
+
+import { Container, Stack } from "@mui/material";
 
 import Header from "./Header";
 

@@ -2,16 +2,13 @@ import { FC } from "react";
 
 import { Typography } from "@mui/material";
 
+import { useGroupByWeek } from "@/hooks/useGroupByWeek";
+import { Time } from "@/models/time";
 import { formatDate } from "@/utils/date";
-
-import { useGroupByWeek } from "./useGroupByWeek";
-import { Time } from "./useTimeline";
 
 interface Props {
   times: Time[];
 }
-
-export type GroupedByWeek = Record<string, Time[]>;
 
 const TimeList: FC<Props> = ({ times }) => {
   const groupedByWeek = useGroupByWeek(times);

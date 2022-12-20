@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import { Time } from "@/models/time";
+
 const initialTimeline: Time[] = [
   // v.50
   {
@@ -40,11 +42,6 @@ const initialTimeline: Time[] = [
     hours: 8.5,
   },
 ];
-
-export interface Time {
-  hours: number;
-  date: Date;
-}
 
 export const useTimeline = () => {
   const [timeline, setTimeline] = useState<Time[]>(initialTimeline);

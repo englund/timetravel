@@ -1,8 +1,8 @@
 import { FC } from "react";
 
-import TimeForm from "./TimeForm";
-import TimeList from "./TimeList";
-import { useTimeline } from "./useTimeline";
+import TimeForm from "@/components/time-form/TimeForm";
+import TimeList from "@/components/time-list/TimeList";
+import { useTimeline } from "@/hooks/useTimeline";
 
 const Timeline: FC = () => {
   const { timeline, addTime } = useTimeline();
