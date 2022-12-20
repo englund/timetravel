@@ -1,6 +1,8 @@
+import { CracoConfig } from "@craco/types";
+
 import { CracoAliasPlugin } from "react-app-alias";
 
-export default {
+const config: CracoConfig = {
   plugins: [
     {
       plugin: CracoAliasPlugin,
@@ -8,3 +10,5 @@ export default {
     },
   ],
 };
+
+export default config;
