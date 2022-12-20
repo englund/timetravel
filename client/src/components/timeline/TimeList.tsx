@@ -1,30 +1,20 @@
-import { compareDesc } from "date-fns";
-
 import { FC } from "react";
 
 import { Typography } from "@mui/material";
 
 import { formatDate } from "@/utils/date";
 
+import { useGroupByWeek } from "./useGroupByWeek";
 import { Time } from "./useTimeline";
 
 interface Props {
   times: Time[];
 }
 
-type GroupedByWeek = Record<string, Time[]>;
+export type GroupedByWeek = Record<string, Time[]>;
 
 const TimeList: FC<Props> = ({ times }) => {
-  const groupedByWeek = times
-    .sort((a, b) => compareDesc(a.date, b.date))
-    .reduce<GroupedByWeek>((grouped, time) => {
-      const week = formatDate(time.date, "I");
-      if (!grouped[week]) {
-        grouped[week] = [];
-      }
-      grouped[week] = [...grouped[week], time];
-      return grouped;
-    }, {});
+  const groupedByWeek = useGroupByWeek(times);
 
   return (
     <>
