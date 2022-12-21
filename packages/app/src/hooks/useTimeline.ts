@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import { Time } from "@/models/time";
+import { isSameDay } from "@/utils/date";
 
 const initialTimeline: Time[] = [
   // v.50
@@ -48,7 +49,11 @@ export const useTimeline = () => {
 
   return {
     addTime: (hours: number, date: Date) => {
-      setTimeline([...timeline, { hours, date }]);
+      const found = timeline.some((time) => isSameDay(time.date, date));
+      if (!found) {
+        setTimeline([...timeline, { hours, date }]);
+      }
+      return !found;
     },
     timeline,
   };
