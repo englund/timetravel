@@ -4,6 +4,9 @@
   "workspaces": [
     "packages/*"
   ],
+  "scripts": {
+    "start:web": "npm run -w ./packages/app start"
+  },
   "devDependencies": {
     "prettier": "2.8.1"
   }
