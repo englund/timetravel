@@ -1,6 +1,7 @@
 {
   "importOrder": [
     "react",
+    "^@tanstack/react-query/?(.*)$",
     "^@mui/(.*)$",
     "^date-fns/?(.*)$",
     "^@fontsource/(.*)$",
