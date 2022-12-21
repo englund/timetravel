@@ -15,7 +15,7 @@ const TimeForm: FC = () => {
   const [error, setError] = useState<string>();
 
   const onSubmit = async () => {
-    const result = await post({ time: { hours, date } });
+    const result = await post({ hours, date });
     if (!result) {
       setError("Det finns redan en sparad tid på valt datum.");
     }

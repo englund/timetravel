@@ -1,5 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
+import { Time } from "@/models/time";
+
 import { PostTimeRequest } from "./models";
 import { queryKey } from "./queryKeys";
 import { postTime } from "./timeline.api";
@@ -16,7 +18,7 @@ export const usePostTimeline = () => {
     }
   );
   return {
-    post: (request: PostTimeRequest) => mutateAsync(request),
+    post: (time: Time) => mutateAsync({ time }),
     isError,
     isLoading,
     error,
