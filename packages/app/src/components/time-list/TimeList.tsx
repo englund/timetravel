@@ -20,7 +20,7 @@ const TimeList: FC<Props> = ({ times }) => {
           <Typography>{week}</Typography>
           {times.map((time) => (
             <Typography key={formatDate(time.date)}>
-              {formatDate(time.date, "P")}: {time.hours}
+              {formatDate(time.date, "iiii")}: {time.hours}
             </Typography>
           ))}
         </div>
