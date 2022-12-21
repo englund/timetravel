@@ -2,7 +2,7 @@ import { Time } from "@/models/time";
 
 import { PostTimeRequest } from "./models";
 
-const timeline: Time[] = [
+let timeline: Time[] = [
   // v.50
   {
     date: new Date("2022-12-12"),
@@ -53,7 +53,7 @@ export const getTimeline = async () => {
 };
 
 export const postTime = async (request: PostTimeRequest) => {
-  timeline.push(request.time);
+  timeline = [...timeline, request.time];
   await sleep(1000);
   return Promise.resolve(request.time);
 };
