@@ -36,7 +36,7 @@
     "@typescript-eslint/parser": "^5.47.0",
     "eslint": "^8.30.0",
     "eslint-plugin-react": "^7.31.11",
-    "prettier": "2.8.1",
+    "prettier": "*",
     "react-app-alias": "^2.2.2"
   },
   "browserslist": {
