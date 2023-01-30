@@ -14,7 +14,10 @@ export const usePostTimeline = (): UsePostTimeline => {
   const queryClient = useQueryClient();
 
   const { mutateAsync } = useMutation(
-    async (request: PostTimeRequest) => await postTime(request),
+    async (request: PostTimeRequest) => {
+      const response = await postTime(request);
+      return response.data;
+    },
     {
       onSuccess: () => {
         queryClient.invalidateQueries([queryKey]);

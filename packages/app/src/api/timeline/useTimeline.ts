@@ -12,6 +12,6 @@ interface UseTimeline {
 export const useTimeline = (): UseTimeline => {
   return useQuery([queryKey], async () => {
     const response = await getTimeline();
-    return response.times;
+    return response.data.times;
   });
 };

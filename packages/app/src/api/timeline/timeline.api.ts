@@ -1,3 +1,5 @@
+import { HttpStatusCode } from "@/api/httpStatusCodes";
+import { HttpResponse } from "@/api/models";
 import { Time } from "@/models/time";
 
 import { GetTimelineResponse, PostTimeRequest } from "./models";
@@ -47,13 +49,27 @@ function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-export const getTimeline = async (): Promise<GetTimelineResponse> => {
+export const getTimeline = async (): Promise<
+  HttpResponse<GetTimelineResponse>
+> => {
   await sleep(1000);
-  return Promise.resolve({ times: timeline });
+  const response: HttpResponse<GetTimelineResponse> = {
+    data: { times: timeline },
+    statusCode: HttpStatusCode.Ok,
+  };
+  return Promise.resolve(response);
 };
 
-export const postTime = async (request: PostTimeRequest): Promise<Time> => {
+export const postTime = async (
+  request: PostTimeRequest
+): Promise<HttpResponse<Time>> => {
   timeline = [...timeline, request.time];
   await sleep(1000);
-  return Promise.resolve(request.time);
+
+  const response: HttpResponse<Time> = {
+    data: request.time,
+    statusCode: HttpStatusCode.Ok,
+  };
+
+  return Promise.resolve(response);
 };
