@@ -26,7 +26,7 @@ const TimeForm: FC = () => {
     setHours(+e.target.value);
   };
 
-  const onDateChange = (newDate: Date | null): void => {
+  const onDateChange = (newDate: Date | null) => {
     setError(undefined);
 
     if (!newDate) return;

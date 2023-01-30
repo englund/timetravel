@@ -6,10 +6,14 @@ import { PostTimeRequest } from "./models";
 import { queryKey } from "./queryKeys";
 import { postTime } from "./timeline.api";
 
-export const usePostTimeline = () => {
+interface UsePostTimeline {
+  post: (time: Time) => Promise<Time>;
+}
+
+export const usePostTimeline = (): UsePostTimeline => {
   const queryClient = useQueryClient();
 
-  const { mutateAsync, isError, isLoading, error } = useMutation(
+  const { mutateAsync } = useMutation(
     async (request: PostTimeRequest) => await postTime(request),
     {
       onSuccess: () => {
@@ -18,9 +22,6 @@ export const usePostTimeline = () => {
     }
   );
   return {
-    post: (time: Time) => mutateAsync({ time }),
-    isError,
-    isLoading,
-    error,
+    post: (time) => mutateAsync({ time }),
   };
 };

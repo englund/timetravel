@@ -1,6 +1,6 @@
 import { Time } from "@/models/time";
 
-import { PostTimeRequest } from "./models";
+import { GetTimelineResponse, PostTimeRequest } from "./models";
 
 let timeline: Time[] = [
   // v.50
@@ -43,16 +43,16 @@ let timeline: Time[] = [
   },
 ];
 
-function sleep(ms: number) {
+function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-export const getTimeline = async () => {
+export const getTimeline = async (): Promise<GetTimelineResponse> => {
   await sleep(1000);
-  return Promise.resolve(timeline);
+  return Promise.resolve({ times: timeline });
 };
 
-export const postTime = async (request: PostTimeRequest) => {
+export const postTime = async (request: PostTimeRequest): Promise<Time> => {
   timeline = [...timeline, request.time];
   await sleep(1000);
   return Promise.resolve(request.time);
