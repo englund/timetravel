@@ -8,6 +8,6 @@
     "start:web": "npm run -w ./packages/app start"
   },
   "devDependencies": {
-    "prettier": "2.8.1"
+    "prettier": "2.8.3"
   }
 }
