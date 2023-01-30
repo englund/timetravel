@@ -1,0 +1,3 @@
+- [ ] handle duplicate times
+- [ ] add notifications for errors/warnings/infos
+- [ ] add tests?
