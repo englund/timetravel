@@ -11,6 +11,8 @@ import svLocale from "date-fns/locale/sv";
 import Layout from "@/layout/Layout";
 import Timeline from "@/pages/Timeline";
 
+import NotificationsProvider from "./components/notifications/NotificationsProvider";
+
 const queryClient = new QueryClient();
 
 const App: FC = () => {
@@ -22,7 +24,9 @@ const App: FC = () => {
       >
         <CssBaseline />
         <Layout>
-          <Timeline />
+          <NotificationsProvider>
+            <Timeline />
+          </NotificationsProvider>
         </Layout>
       </LocalizationProvider>
       <ReactQueryDevtools initialIsOpen={false} />

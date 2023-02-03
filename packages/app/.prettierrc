@@ -3,6 +3,7 @@
     "react",
     "^@tanstack/react-query/?(.*)$",
     "^@mui/(.*)$",
+    "^notistack/?(.*)$",
     "^date-fns/?(.*)$",
     "^@fontsource/(.*)$",
     "^@/(.*)$",
