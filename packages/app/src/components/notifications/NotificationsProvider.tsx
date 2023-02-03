@@ -1,13 +1,16 @@
 import { FC, PropsWithChildren, createContext, useContext } from "react";
 
-import { SnackbarProvider, useSnackbar } from "notistack";
+import CloseIcon from "@mui/icons-material/Close";
+import IconButton from "@mui/material/IconButton/IconButton";
+
+import { SnackbarKey, SnackbarProvider, useSnackbar } from "notistack";
 
 interface NotificationsContextType {
-  addNotification: (message: string) => void;
+  addErrorNotification: (message: string) => void;
 }
 
 const initialContext: NotificationsContextType = {
-  addNotification: () => {
+  addErrorNotification: () => {
     throw new Error("Function is not implemented");
   },
 };
@@ -19,14 +22,23 @@ export const useNotifications: () => NotificationsContextType = () =>
   useContext(NotificationsContext);
 
 const NotificationsProvider: FC<PropsWithChildren> = ({ children }) => {
-  const { enqueueSnackbar } = useSnackbar();
-  const addNotification = (message: string) => {
-    enqueueSnackbar(message);
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+
+  const action = (snackbarId: SnackbarKey) => (
+    <>
+      <IconButton onClick={() => closeSnackbar(snackbarId)}>
+        <CloseIcon sx={{ color: "#ffffff" }} />
+      </IconButton>
+    </>
+  );
+
+  const addErrorNotification = (message: string) => {
+    enqueueSnackbar(message, { variant: "error", action });
   };
 
   return (
-    <NotificationsContext.Provider value={{ addNotification }}>
-      <SnackbarProvider>{children}</SnackbarProvider>
+    <NotificationsContext.Provider value={{ addErrorNotification }}>
+      {children}
     </NotificationsContext.Provider>
   );
 };
@@ -34,7 +46,7 @@ const NotificationsProvider: FC<PropsWithChildren> = ({ children }) => {
 const NotificationsProviderWithNotistack: FC<PropsWithChildren> = ({
   children,
 }) => (
-  <SnackbarProvider>
+  <SnackbarProvider hideIconVariant>
     <NotificationsProvider>{children}</NotificationsProvider>
   </SnackbarProvider>
 );

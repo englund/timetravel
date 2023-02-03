@@ -7,13 +7,13 @@ import TimeForm from "@/components/time-form/TimeForm";
 import TimeList from "@/components/time-list/TimeList";
 
 const Timeline: FC = () => {
-  const { addNotification } = useNotifications();
+  const { addErrorNotification } = useNotifications();
 
   return (
     <>
       <TimeForm />
       <TimeList />
-      <Button onClick={() => addNotification("Hello " + new Date())}>
+      <Button onClick={() => addErrorNotification("Hello " + new Date())}>
         Add
       </Button>
     </>
