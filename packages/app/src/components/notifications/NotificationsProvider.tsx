@@ -46,7 +46,13 @@ const NotificationsProvider: FC<PropsWithChildren> = ({ children }) => {
 const NotificationsProviderWithNotistack: FC<PropsWithChildren> = ({
   children,
 }) => (
-  <SnackbarProvider hideIconVariant>
+  <SnackbarProvider
+    hideIconVariant
+    anchorOrigin={{
+      vertical: "top",
+      horizontal: "right",
+    }}
+  >
     <NotificationsProvider>{children}</NotificationsProvider>
   </SnackbarProvider>
 );
