@@ -33,7 +33,7 @@ const NotificationsProvider: FC<PropsWithChildren> = ({ children }) => {
   );
 
   const addErrorNotification = (message: string) => {
-    enqueueSnackbar(message, { variant: "error", action });
+    enqueueSnackbar(message, { variant: "error", persist: true, action });
   };
 
   return (
