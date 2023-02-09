@@ -1,17 +1,20 @@
 package main
 
 import (
-	"net/http"
+	"timetravel/api/routes"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
-  r := gin.Default()
-  r.GET("/status", func(c *gin.Context) {
-    c.JSON(http.StatusOK, gin.H{
-      "running": true,
-    })
-  })
-  r.Run(":8080")
+	r := gin.Default()
+
+	routes.Status(r.Group("/status"))
+
+	v1 := r.Group("/v1")
+	{
+		routes.Timeline(v1.Group("/timeline"))
+	}
+
+	r.Run(":8080")
 }
