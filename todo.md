@@ -1,3 +1,6 @@
 - [ ] handle duplicate times
-- [ ] add notifications for errors/warnings/infos
+- [x] add notifications for errors/warnings/infos
 - [ ] add tests?
+- [ ] add backend
+- [ ] split be and fe
+- [ ] make fe package for notifications, and perhaps more
