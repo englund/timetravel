@@ -5,6 +5,7 @@ import (
 	"os"
 	"timetravel/api/repositories"
 	"timetravel/api/routes"
+	"timetravel/api/services"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/driver/sqlite"
@@ -26,7 +27,8 @@ func main() {
 	v1 := r.Group("/v1")
 	{
 		timelineRepository := repositories.NewTimelineRepository(db)
-		routes.Timeline(v1.Group("/timeline"), timelineRepository)
+		timelineService := services.NewTimelineService(timelineRepository)
+		routes.Timeline(v1.Group("/timeline"), timelineService)
 	}
 
 	r.Run(":8080")

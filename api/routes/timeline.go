@@ -7,12 +7,12 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type TimelineRepository interface {
+type TimelineService interface {
 	GetAll() []*repositories.Time
 }
 
-func Timeline(g *gin.RouterGroup, r TimelineRepository) {
+func Timeline(g *gin.RouterGroup, ts TimelineService) {
 	g.GET("/", func(ctx *gin.Context) {
-		ctx.JSON(http.StatusOK, r.GetAll())
+		ctx.JSON(http.StatusOK, ts.GetAll())
 	})
 }
