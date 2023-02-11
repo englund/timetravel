@@ -10,10 +10,16 @@ type context struct {
 
 type TimelineRepository interface {
 	GetAll() ([]*repositories.Time, error)
+	Create(time *repositories.Time) (*repositories.Time, error)
 }
 
 func NewTimelineService(tr TimelineRepository) *context {
 	return &context{tr: tr}
+}
+
+func (ctx context) Create(time *repositories.Time) (*repositories.Time, error) {
+	// TODO: check for duplicates
+	return ctx.tr.Create(time)
 }
 
 func (ctx context) GetAll() ([]*repositories.Time, error) {

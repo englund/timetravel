@@ -25,6 +25,15 @@ func NewTimelineRepository(db *gorm.DB) *context {
 	return &context{db}
 }
 
+func (ctx context) Create(time *Time) (*Time, error) {
+	r := ctx.db.Create(&time)
+	if r.Error != nil {
+		return nil, r.Error
+	}
+
+	return time, nil
+}
+
 func (ctx context) GetAll() ([]*Time, error) {
 	var times []*Time
 	result := ctx.db.Find(&times)
