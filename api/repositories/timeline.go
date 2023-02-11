@@ -1,11 +1,15 @@
 package repositories
 
 import (
+	"time"
+
 	"gorm.io/gorm"
 )
 
 type Time struct {
-	ID int64
+	gorm.Model
+	Hours uint64
+	Date  time.Time
 }
 
 type context struct {
@@ -13,9 +17,20 @@ type context struct {
 }
 
 func NewTimelineRepository(db *gorm.DB) *context {
-	return &context{db: db}
+	db.AutoMigrate(&Time{})
+
+	time := Time{Hours: 8, Date: time.Now()}
+	db.Create(&time)
+
+	return &context{db}
 }
 
-func (ctx context) GetAll() []*Time {
-	return make([]*Time, 0)
+func (ctx context) GetAll() ([]*Time, error) {
+	var times []*Time
+	result := ctx.db.Find(&times)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+
+	return times, nil
 }

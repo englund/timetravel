@@ -3,20 +3,18 @@ package main
 import (
 	"log"
 	"os"
+	"timetravel/api/db"
 	"timetravel/api/repositories"
 	"timetravel/api/routes"
 	"timetravel/api/services"
 
 	"github.com/gin-gonic/gin"
-	"gorm.io/driver/sqlite"
-	"gorm.io/gorm"
 )
 
 func main() {
 	r := gin.Default()
 
-	db, err := gorm.Open(sqlite.Open("database.sqlite"), &gorm.Config{})
-
+	db, err := db.CreateConnection()
 	if err != nil {
 		log.Fatal(err)
 		os.Exit(1)
