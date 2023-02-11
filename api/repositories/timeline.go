@@ -8,7 +8,7 @@ import (
 
 type Time struct {
 	gorm.Model
-	Hours uint64
+	Hours float32
 	Date  time.Time
 }
 

@@ -16,7 +16,7 @@ type TimelineService interface {
 
 type PostTimeRequest struct {
 	Date  time.Time `json:"date" binding:"required"`
-	Hours uint64    `json:"hours" binding:"required"`
+	Hours float32   `json:"hours" binding:"required"`
 }
 
 // TODO: extract endpoints to separate functions
