@@ -5,15 +5,15 @@ import (
 )
 
 type context struct {
-	tr TimelineRepository
+	tr timelineRepository
 }
 
-type TimelineRepository interface {
+type timelineRepository interface {
 	GetAll() ([]*repositories.Time, error)
 	Create(time *repositories.Time) (*repositories.Time, error)
 }
 
-func NewTimelineService(tr TimelineRepository) *context {
+func NewTimelineService(tr timelineRepository) *context {
 	return &context{tr: tr}
 }
 

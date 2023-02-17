@@ -9,35 +9,46 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type TimelineService interface {
+type timelineService interface {
 	GetAll() ([]*repositories.Time, error)
 	Create(time *repositories.Time) (*repositories.Time, error)
 }
 
-type PostTimeRequest struct {
+type timeResponse struct {
+	ID    uint      `json:"id"`
 	Date  time.Time `json:"date" binding:"required"`
 	Hours float32   `json:"hours" binding:"required"`
 }
+type postTimeRequest struct {
+	timeResponse
+}
 
-// TODO: extract endpoints to separate functions
+type postTimeResponse struct {
+	timeResponse
+}
 
-func Timeline(g *gin.RouterGroup, ts TimelineService) {
+type getAllTimeResponse = []*timeResponse
+
+func Timeline(g *gin.RouterGroup, ts timelineService) {
 	g.POST("/", func(ctx *gin.Context) {
-		var request PostTimeRequest
+		var request postTimeRequest
 		if ctx.Bind(&request) != nil {
 			ctx.JSON(http.StatusBadRequest, nil)
 			return
 		}
 
-		time, err := ts.Create(&repositories.Time{Date: request.Date, Hours: request.Hours})
+		time, err := ts.Create(&repositories.Time{
+			Date:  request.Date,
+			Hours: request.Hours,
+		})
 		if err != nil {
 			ctx.JSON(http.StatusInternalServerError, nil)
 			return
 		}
 
-		// TODO: separate db and response model
-
-		ctx.JSON(http.StatusOK, time)
+		ctx.JSON(http.StatusOK, postTimeResponse{
+			timeResponse: timeResponse{ID: time.ID, Date: time.Date, Hours: time.Hours},
+		})
 	})
 	g.GET("/", func(ctx *gin.Context) {
 		times, err := ts.GetAll()
@@ -45,6 +56,15 @@ func Timeline(g *gin.RouterGroup, ts TimelineService) {
 			// TODO: error handling
 			log.Println(err)
 		}
-		ctx.JSON(http.StatusOK, times)
+
+		response := make(getAllTimeResponse, len(times))
+		for i, x := range times {
+			response[i] = &timeResponse{
+				ID:    x.ID,
+				Date:  x.Date,
+				Hours: x.Hours,
+			}
+		}
+		ctx.JSON(http.StatusOK, response)
 	})
 }
