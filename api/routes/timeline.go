@@ -29,6 +29,14 @@ type postTimeResponse struct {
 
 type getAllTimeResponse = []*timeResponse
 
+func mapToTimeResponse(time *repositories.Time) *timeResponse {
+	return &timeResponse{
+		ID:    time.ID,
+		Date:  time.Date,
+		Hours: time.Hours,
+	}
+}
+
 func Timeline(g *gin.RouterGroup, ts timelineService) {
 	g.POST("/", func(ctx *gin.Context) {
 		var request postTimeRequest
@@ -47,7 +55,7 @@ func Timeline(g *gin.RouterGroup, ts timelineService) {
 		}
 
 		ctx.JSON(http.StatusOK, postTimeResponse{
-			timeResponse: timeResponse{ID: time.ID, Date: time.Date, Hours: time.Hours},
+			timeResponse: *mapToTimeResponse(time),
 		})
 	})
 	g.GET("/", func(ctx *gin.Context) {
@@ -59,11 +67,7 @@ func Timeline(g *gin.RouterGroup, ts timelineService) {
 
 		response := make(getAllTimeResponse, len(times))
 		for i, x := range times {
-			response[i] = &timeResponse{
-				ID:    x.ID,
-				Date:  x.Date,
-				Hours: x.Hours,
-			}
+			response[i] = mapToTimeResponse(x)
 		}
 		ctx.JSON(http.StatusOK, response)
 	})
