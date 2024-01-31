@@ -13,17 +13,15 @@ interface UsePostTimeline {
 export const usePostTimeline = (): UsePostTimeline => {
   const queryClient = useQueryClient();
 
-  const { mutateAsync } = useMutation(
-    async (request: PostTimeRequest) => {
+  const { mutateAsync } = useMutation({
+    mutationFn: async (request: PostTimeRequest) => {
       const response = await postTime(request);
       return response.data;
     },
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries([queryKey]);
-      },
-    }
-  );
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [queryKey] });
+    },
+  });
   return {
     post: (time) => mutateAsync({ time }),
   };
