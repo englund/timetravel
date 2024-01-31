@@ -16,7 +16,7 @@ type GroupByWeek<T> = { [weeknumber: string]: T[] };
 
 export const groupByWeek = <T>(
   list: T[],
-  f: (item: T) => Date
+  f: (item: T) => Date,
 ): GroupByWeek<T> =>
   list
     .sort((a, b) => compareAsc(f(a), f(b)))

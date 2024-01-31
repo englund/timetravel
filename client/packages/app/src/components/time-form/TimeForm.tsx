@@ -42,11 +42,7 @@ const TimeForm: FC = () => {
           value={hours}
           onChange={onHoursChange}
         />
-        <DatePicker
-          label="Datum"
-          value={date}
-          onChange={onDateChange}
-        />
+        <DatePicker label="Datum" value={date} onChange={onDateChange} />
         <Button variant="contained" color="primary" onClick={onSubmit}>
           Lägg till
         </Button>

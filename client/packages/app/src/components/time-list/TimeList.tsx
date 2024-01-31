@@ -10,7 +10,7 @@ const TimeList: FC = () => {
 
   const groupedByWeek = useMemo(
     () => groupByWeek(times, (time) => time.date),
-    [times]
+    [times],
   );
 
   return (

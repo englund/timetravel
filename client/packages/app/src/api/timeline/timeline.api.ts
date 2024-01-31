@@ -61,7 +61,7 @@ export const getTimeline = async (): Promise<
 };
 
 export const postTime = async (
-  request: PostTimeRequest
+  request: PostTimeRequest,
 ): Promise<HttpResponse<Time>> => {
   timeline = [...timeline, request.time];
   await sleep(1000);

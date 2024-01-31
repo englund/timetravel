@@ -18,10 +18,7 @@ const queryClient = new QueryClient();
 const App: FC = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <LocalizationProvider
-        dateAdapter={AdapterDateFns}
-        adapterLocale={sv}
-      >
+      <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={sv}>
         <CssBaseline />
         <Layout>
           <NotificationsProvider>
