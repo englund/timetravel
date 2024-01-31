@@ -46,7 +46,6 @@ const TimeForm: FC = () => {
           label="Datum"
           value={date}
           onChange={onDateChange}
-          renderInput={(params) => <TextField {...params} />}
         />
         <Button variant="contained" color="primary" onClick={onSubmit}>
           Lägg till
