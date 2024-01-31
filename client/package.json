@@ -6,7 +6,8 @@
   ],
   "scripts": {
     "start:web": "npm run -w ./packages/app start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "prettier": "prettier --write ."
   },
   "devDependencies": {
     "prettier": "3.2.4"
