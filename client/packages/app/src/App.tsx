@@ -3,10 +3,10 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { FC } from "react";
 
 import CssBaseline from "@mui/material/CssBaseline/CssBaseline";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFnsV3";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
-import svLocale from "date-fns/locale/sv";
+import { sv } from "date-fns/locale/sv";
 
 import Layout from "@/layout/Layout";
 import Timeline from "@/pages/Timeline";
@@ -20,7 +20,7 @@ const App: FC = () => {
     <QueryClientProvider client={queryClient}>
       <LocalizationProvider
         dateAdapter={AdapterDateFns}
-        adapterLocale={svLocale}
+        adapterLocale={sv}
       >
         <CssBaseline />
         <Layout>
